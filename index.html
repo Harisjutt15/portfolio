@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- RESET & BASE STYLES --- */
+        :root {
+            --primary-color: #2563eb; /* Professional Blue */
+            --dark-bg: #0f172a;
+            --light-bg: #f8fafc;
+            --text-main: #334155;
+            --text-light: #94a3b8;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- LAYOUT UTILITIES --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section { padding: 80px 0; }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: var(--dark-bg);
+            text-align: center;
+            font-weight: 700;
+        }
+
+        h3 { font-size: 1.25rem; margin-bottom: 10px; color: var(--dark-bg); }
+        h4 { font-size: 1.1rem; color: var(--primary-color); margin-bottom: 15px; }
+
+        /* --- HEADER --- */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--dark-bg); }
+        
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { font-weight: 500; font-size: 0.9rem; color: var(--text-main); }
+        .nav-links a:hover { color: var(--primary-color); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+        }
+
+        .hero h1 { font-size: 4rem; margin-bottom: 20px; letter-spacing: -1px; }
+        .hero p { font-size: 1.5rem; color: var(--text-light); max-width: 600px; margin: 0 auto 30px; }
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+
+        /* --- ABOUT --- */
+        .about-content { max-width: 800px; margin: 0 auto; text-align: center; }
+
+        /* --- SKILLS --- */
+        .skills-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .skill-tag {
+            background: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 1px solid #e2e8f0;
+            font-weight: 600;
+            color: var(--dark-bg);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        /* --- PROJECTS (GRID) --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .project-card:hover { transform: translateY(-5px); }
+        
+        .project-card ul { margin-top: 15px; padding-left: 20px; list-style-type: disc; }
+        .project-card li { margin-bottom: 8px; font-size: 0.95rem; color: #475569; }
+        .project-card strong { color: var(--dark-bg); }
+
+        /* --- EXPERIENCE --- */
+        .timeline-item {
+            border-left: 2px solid var(--primary-color);
+            padding-left: 30px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            width: 12px;
+            height: 12px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            position: absolute;
+            left: -7px;
+            top: 5px;
+        }
+
+        .timeline-date { color: var(--text-light); font-size: 0.9rem; margin-bottom: 5px; display: block; }
+
+        /* --- CONTACT --- */
+        .contact { background: var(--dark-bg); color: white; }
+        .contact h2 { color: white; }
+        .contact-content { text-align: center; }
+        .contact-content a { color: var(--primary-color); font-weight: bold; font-size: 1.2rem; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; } /* Simplified for single file demo */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">[Your Name]</div>
+                <div class="nav-links">
+                    <a href="#about">About</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+        <div class="col-6">    <h1>Full Stack Laravel Developer</h1>
+            <p>Building scalable enterprise solutions, from HRM Suites to Real-time Communication platforms.</p>
+            <a href="#projects" class="btn">View My Work</a></div>
+            <div class="col-6">
+                <img src="images/avatar.png" alt="">
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <p>I am a dedicated developer focused on creating robust backend architectures and seamless user experiences. Specializing in Laravel ecosystems, I build tools that solve complex business problems, ranging from inventory cycles to full-scale HR management systems.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" style="background: #f1f5f9;">
+        <div class="container">
+            <h2>Technical Stack</h2>
+            <div class="skills-grid">
+                <div class="skill-tag">Laravel</div>
+                <div class="skill-tag">PHP</div>
+                <div class="skill-tag">MySQL</div>
+                <div class="skill-tag">RESTful APIs</div>
+                <div class="skill-tag">WebSockets / Broadcasting</div>
+                <div class="skill-tag">Redis & Queues</div>
+                <div class="skill-tag">Spatie Packages</div>
+                <div class="skill-tag">HTML5 & CSS3</div>
+                <div class="skill-tag">JavaScript</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+        <div class="container">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+
+                <!-- 1. HRM SUITE -->
+                <div class="project-card">
+                    <h3>Comprehensive HRM Suite</h3>
+                    <h4>Enterprise Management</h4>
+                    <p><strong>1. Core Administration:</strong> Manages the full repository of employee profiles, handling complex hierarchies and employment phases.</p>
+                    <p><strong>2. Automated Time & Leave:</strong> Integrates Biometric hardware with logic that automatically calculates balances and enforces leave policies.</p>
+                    <p><strong>3. Payroll Engine:</strong> Automates monthly salary calculations, incorporating allowances, loans, and increments.</p>
+                    <p><strong>4. Talent Acquisition:</strong> A dedicated workflow managing job postings through to applicant tracking.</p>
+                </div>
+
+                <!-- 2. MATERIAL CYCLE -->
+                <div class="project-card">
+                    <h3>Material Cycle System</h3>
+                    <h4>Inventory Logic</h4>
+                    <p><strong>1. Material Request (Demand):</strong> Digitizes departmental requirements, linking demands to cost centers and responsible users.</p>
+                    <p><strong>2. Issuance Tracking (Supply):</strong> Monitors "Requested vs. Issued" quantities, identifying pending balances and logging consumption.</p>
+                    <p><strong>3. Material Return:</strong> Handles excess material management by validating returns against original issuance and adjusting inventory.</p>
+                </div>
+
+                <!-- 3. TASK MANAGER -->
+                <div class="project-card">
+                    <h3>Collaborative Task Manager</h3>
+                    <h4>Productivity Tool</h4>
+                    <p><strong>1. Creation & Assignment:</strong> Enables detailed task generation with Multi-User and Department binding.</p>
+                    <p><strong>2. Notification Engine:</strong> Uses Jobs and Queues to process email/DB notifications in the background for lag-free performance.</p>
+                    <p><strong>3. Interaction:</strong> Features a dedicated thread for assignee collaboration and detailed Activity Logs.</p>
+                </div>
+
+                <!-- 4. CHAT SYSTEM -->
+                <div class="project-card">
+                    <h3>Live Chat Module</h3>
+                    <h4>Real-Time Communication</h4>
+                    <p><strong>1. Seamless Interaction:</strong> Leveraged Laravel Broadcasting for a smooth "no-reload" messaging experience.</p>
+                    <p><strong>2. Channel Logic:</strong> Supports personal 1-on-1 chats as well as dynamic User Groups and Departmental Channels.</p>
+                </div>
+
+                <!-- 5. APNA APARTMENT -->
+                <div class="project-card">
+                    <h3>Apna Apartment Ecosystem</h3>
+                    <h4>Real Estate & API</h4>
+                    <p><strong>1. Centralized Property Hub:</strong> A CMS that acts as the single source of truth for all apartment listings and inventory.</p>
+                    <p><strong>2. Mobile-First API:</strong> Implemented high-performance endpoints to ensure instant data synchronization between the web backend and mobile app.</p>
+                </div>
+
+                <!-- 6. MYGOOD MOVERS -->
+                <div class="project-card">
+                    <h3>MyGood Movers</h3>
+                    <h4>Service Aggregator</h4>
+                    <p><strong>1. Vendor Onboarding:</strong> Uses API integrations to pull distinct service rates and facilities from registered movers.</p>
+                    <p><strong>2. Comparison Interface:</strong> Empowers users to compare movers side-by-side based on logistical needs and budget.</p>
+                </div>
+
+                <!-- 7. WADAN CMS -->
+                <div class="project-card">
+                    <h3>Wadan Developments CMS</h3>
+                    <h4>Corporate Content Manager</h4>
+                    <p><strong>1. Unified Architecture:</strong> Replaces static coding with dynamic modules for Properties, Communities, and Amenities.</p>
+                    <p><strong>2. Operational Tools:</strong> Integrates a Recruitment Module (Jobs) and Event/Blog systems into a single admin dashboard.</p>
+                </div>
+
+                <!-- 8. SECURITY (SPATIE) -->
+                <div class="project-card">
+                    <h3>Security & Asset Logic</h3>
+                    <h4>System Architecture</h4>
+                    <p><strong>1. Authorization (Spatie Permission):</strong> Secured application logic using strict RBAC for dynamic role assignment.</p>
+                    <p><strong>2. Media Handler:</strong> Centralized file management system handling associations and storage optimization efficiently.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" style="background: #f1f5f9;">
+        <div class="container">
+            <h2>Experience</h2>
+            <div class="timeline-item">
+                <h3>Senior Laravel Developer</h3>
+                <span class="timeline-date">2021 - Present</span>
+                <p>Lead developer for enterprise-grade HRM and Inventory solutions. Specialized in optimizing database queries and implementing asynchronous notification systems.</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Web Developer</h3>
+                <span class="timeline-date">2019 - 2021</span>
+                <p>Developed dynamic CMS platforms for Real Estate sectors and integrated RESTful APIs for mobile applications.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <div class="contact-content">
+                <p style="margin-bottom: 20px; color: #cbd5e1;">Available for freelance opportunities and full-time roles.</p>
+                <a href="mailto:email@example.com">email@example.com</a>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
